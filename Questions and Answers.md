@@ -1,6 +1,7 @@
 Below are the questions that were asked during the 30 days challenges and the queries I wrote to answer them.
 
--- DAY 1
+**-- DAY 1**
+
 -- Using the Movie Data, write a query to show the titles and movies released in 2017 whose vote count is more than 15 and runtime is more than 100
 ```sql
 SELECT original_title
