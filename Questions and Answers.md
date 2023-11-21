@@ -1,6 +1,6 @@
 Below are the questions that were asked during the 30 days challenges and the queries I wrote to answer them.
 
-**-- DAY 1**
+**DAY 1**
 
 -- Using the Movie Data, write a query to show the titles and movies released in 2017 whose vote count is more than 15 and runtime is more than 100
 ```sql
@@ -9,22 +9,30 @@ FROM movie_data
 WHERE YEAR(release_date) = 2017 AND vote_count > 15 AND runtime > 100; 
 ```
 
--- DAY 2 
+**DAY 2**
+
 -- Using PIzza Data, Write a query to show how many pizzas were ordered
+```sql
 SELECT COUNT(*) AS total_pizzas_ordered
 FROM customer_orders;
+```
 
--- DAY 3
+**DAY 3**
+
 -- Using the pizza data, write a query to show How many successful orders were delivered by each runner.
+```sql
 SELECT runner_id, COUNT(runner_id) AS successful_orders
 FROM runner_orders
 WHERE pickup_time IS NOT NULL
 GROUP BY runner_id;
+```
 -- OR
+```sql
 SELECT runner_id, COUNT(runner_id) AS successful_orders
 FROM runner_orders
 WHERE cancellation = ''
 GROUP BY runner_id;
+```
 
 -- DAY 4
 /*Using the Movie Data, Write a query to show the top 10 movie titles whose language is English 
