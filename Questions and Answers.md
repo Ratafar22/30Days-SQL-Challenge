@@ -34,49 +34,61 @@ WHERE cancellation = ''
 GROUP BY runner_id;
 ```
 
--- DAY 4
-/*Using the Movie Data, Write a query to show the top 10 movie titles whose language is English 
-and French and the budget is more than 1,000,000*/
+ **DAY 4**
+ 
+Using the Movie Data, Write a query to show the top 10 movie titles whose language is English 
+and French and the budget is more than 1,000,000
+```sql
 SELECT original_title
 FROM movie_data
 WHERE original_language IN ('en', 'fr') AND budget >1000000
 LIMIT 10;
+```
 
--- DAY 5 
+**DAY 5**
+
 -- Using the Pizza Data, Write a query to show the number of each type of pizza that was delivered
+```sql
 USE pizzas;
 SELECT p.pizza_name, COUNT(c.pizza_id)
 FROM customer_orders c
 INNER JOIN  pizza_names p ON p.pizza_id = c.pizza_id
 WHERE c.order_id NOT IN (SELECT order_id FROM runner_orders WHERE cancellation != '')
 GROUP BY 1;
+```
 
--- BONUS Question
-/*The Briggs company wants to ship some of their products to customers in selected cities but they want to know
+**BONUS Question**
+
+The Briggs company wants to ship some of their products to customers in selected cities but they want to know
 the average days it will take to deliver those items to Dallas, Los Angeles, Seattle, and Madison. 
 Using the sample superstore data, write a query to show the average delivery days to those cities. 
-Only show the city and Average delivery days columns in your output */
+Only show the city and Average delivery days columns in your output.
+```sql
 USE movies;
 SELECT city, ROUND(AVG(DATEDIFF(shipdate, orderdate)),1) AS Average_delivery_days
 FROM superstore
 WHERE city in ('Dallas', 'Los Angeles', 'Seattle', 'Madison')
 GROUP BY city;
+```
 
--- DAY 8
-/* It's getting to the end of the year and The Briggs Company wants to reward the customer who made the highest sales ever. 
+**DAY 8**
+
+It's getting to the end of the year and The Briggs Company wants to reward the customer who made the highest sales ever. 
 Using the Sample Superstore, write a query to help the company identify this customer and the category of business driving the sales.
-Let your output show the customer Name, the category, and the total sales. Round the total sales to the nearest whole number. */
+Let your output show the customer Name, the category, and the total sales. Round the total sales to the nearest whole number.
+```sql 
 SELECT CustomerName, Category, ROUND(SUM(sales),0) AS total_sales
 FROM superstore
 WHERE CustomerName = 	(SELECT CustomerName 
-						FROM 	(SELECT CustomerName, SUM(sales) AS total_sales
-								FROM superstore
-								GROUP BY 1
-								ORDER BY 2 DESC
-								LIMIT 1) sub1)
+			 FROM 	(SELECT CustomerName, SUM(sales) AS total_sales
+				 FROM superstore
+				 GROUP BY 1
+				 ORDER BY 2 DESC
+				 LIMIT 1) sub1)
 GROUP BY 1, 2
 ORDER BY 3 DESC
 LIMIT 1;
+```
 
 -- DAY 9
 /* The Briggs Company has 3 categories of business generating revenue for the company. 
