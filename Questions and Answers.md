@@ -2,7 +2,7 @@ Below are the questions that were asked during the 30 days challenges and the qu
 
 **DAY 1**
 
--- Using the Movie Data, write a query to show the titles and movies released in 2017 whose vote count is more than 15 and runtime is more than 100
+Using the Movie Data, write a query to show the titles and movies released in 2017 whose vote count is more than 15 and runtime is more than 100
 ```sql
 SELECT original_title
 FROM movie_data
@@ -11,7 +11,7 @@ WHERE YEAR(release_date) = 2017 AND vote_count > 15 AND runtime > 100;
 
 **DAY 2**
 
--- Using PIzza Data, Write a query to show how many pizzas were ordered
+Using PIzza Data, Write a query to show how many pizzas were ordered
 ```sql
 SELECT COUNT(*) AS total_pizzas_ordered
 FROM customer_orders;
@@ -19,7 +19,7 @@ FROM customer_orders;
 
 **DAY 3**
 
--- Using the pizza data, write a query to show How many successful orders were delivered by each runner.
+Using the pizza data, write a query to show How many successful orders were delivered by each runner.
 ```sql
 SELECT runner_id, COUNT(runner_id) AS successful_orders
 FROM runner_orders
@@ -47,7 +47,7 @@ LIMIT 10;
 
 **DAY 5**
 
--- Using the Pizza Data, Write a query to show the number of each type of pizza that was delivered
+Using the Pizza Data, Write a query to show the number of each type of pizza that was delivered
 ```sql
 USE pizzas;
 SELECT p.pizza_name, COUNT(c.pizza_id)
@@ -90,57 +90,53 @@ ORDER BY 3 DESC
 LIMIT 1;
 ```
 
--- DAY 9
-/* The Briggs Company has 3 categories of business generating revenue for the company. 
+**DAY 9**
+
+The Briggs Company has 3 categories of business generating revenue for the company. 
 They want to know which of them is driving the business. Write a query to show the total sales and percentage
-contribution by each category. Show category, Total Sales, and Percentage Contribution columns in your output.*/
+contribution by each category. Show category, Total Sales, and Percentage Contribution columns in your output.
+```sql
 SELECT Category, 
 ROUND(SUM(sales),0) AS Total_Sales, 
 CONCAT(ROUND(SUM(sales)*100/(SELECT SUM(sales) FROM superstore),1),'%') AS Percentage_Contribution
 FROM superstore
 GROUP BY 1
 ORDER BY 3 DESC;
+```
 
+**DAY 10**
 
-SELECT *
-FROM superstore;
-
-
--- DAY 10
-/* After seeing the Sales by Category, the Briggs company became curious and wanted to dig deeper to see 
+After seeing the Sales by Category, the Briggs company became curious and wanted to dig deeper to see 
 which subcategory is selling the most. They need the help of an analyst. Please help the company write a
  query to show the sub-category and the total sales of each sub-category. Let your query display only the
- Subcategory and the Total sales columns to see which product sells the most.*/
+ Subcategory and the Total sales columns to see which product sells the most.
+ ```sql
 SELECT SubCategory, 
 ROUND(SUM(sales),0) AS Total_Sales
 FROM superstore
 GROUP BY 1
 ORDER BY 2 DESC;
+```
 
--- DAY 11
-/* Now that you've identified phones as the business driver in terms of revenue. 
-The company wants to know the total phone sales by year to understand how each year performed. 
-As the Analyst, please help them show the breakdown of total sales by year in descending order. 
-Let your output show only the Total sales and Sales Year column. */
+**DAY 11**
+
+Now that you've identified phones as the business driver in terms of revenue. The company wants to know the total phone sales by year to understand how each year performed. As the Analyst, please help them show the breakdown of total sales by year in descending order. Let your output show only the Total sales and Sales Year column.
+```sql
 SELECT YEAR(OrderDate) Year, 
 ROUND(SUM(sales),0) AS Total_Phone_Sales
 FROM superstore
 WHERE SubCategory = 'Phones'
 GROUP BY 1
 ORDER BY 2 DESC;
+```
 
-SELECT YEAR(OrderDate) Year, 
-ROUND(SUM(sales),0) AS Total_Phone_Sales
-FROM superstore
-WHERE SubCategory = 'Phones'
-GROUP BY Year
-ORDER BY Total_Phone_Sales DESC;
+**DAY 12**
 
--- DAY 12
-/* The Director of Analytics has requested a detailed analysis of the Briggs Company. 
+The Director of Analytics has requested a detailed analysis of the Briggs Company. 
 To fulfill this request, he needs you to generate a table that displays the profit margin 
 of each segment. The table should include the segments, total sales, total profit, and the profit margin. 
-To ensure accuracy, the profit margin should be arranged in descending order.*/
+To ensure accuracy, the profit margin should be arranged in descending order.
+```sql
 SELECT 	Segment,
 		ROUND(SUM(sales),0) AS Total_sales,
 		ROUND(SUM(profit),0) AS Profit,
@@ -148,30 +144,33 @@ SELECT 	Segment,
 FROM superstore
 GROUP BY Segment
 ORDER BY Profit_Margin DESC;
+```
 
-SELECT SUM(profit)*100/SUM(sales) AS margin
-FROM superstore;
+**Bonus Question**
 
--- Bonus Question
-/*Please use the Bonus table to write a query that returns only the meaningful reviews. 
-Let your output return only the review column. */
+Please use the Bonus table to write a query that returns only the meaningful reviews. 
+Let your output return only the review column.
+```sql
 SELECT (Review)
 FROM bonus_table
 WHERE translation = '';
+```
 
--- DAY 15
-/* Your company started consulting for Micro bank who needs to analyze their marketing data to understand their customers better.
- This will help them to plan their next marketing campaign. you are brought on board as the analyst for this job.
- They have an offer for customers who are divorced but they need data to back up the campaign. Using the marketing data, 
- write a query to show the percentage of customers who are divorced and have balances greater than 2000 */
+**DAY 15**
 
+Your company started consulting for Micro bank who needs to analyze their marketing data to understand their customers better.
+This will help them to plan their next marketing campaign. you are brought on board as the analyst for this job.
+They have an offer for customers who are divorced but they need data to back up the campaign. Using the marketing data, 
+write a query to show the percentage of customers who are divorced and have balances greater than 2000.
+```sql
 WITH divorced_customers AS (
 				SELECT COUNT(marital) AS No_of_divorced
 				FROM marketingdata
 				WHERE marital = 'divorced' AND balance > 2000)
                 
- SELECT ROUND(No_of_divorced/(SELECT COUNT(*) FROM marketingdata)*100,2) AS '%_of_divorced_customers'
- FROM divorced_customers; 
+SELECT ROUND(No_of_divorced/(SELECT COUNT(*) FROM marketingdata)*100,2) AS '%_of_divorced_customers'
+FROM divorced_customers;
+```
  
 SELECT * FROM marketingdata;
 
