@@ -163,6 +163,7 @@ This will help them to plan their next marketing campaign. you are brought on bo
 They have an offer for customers who are divorced but they need data to back up the campaign. Using the marketing data, 
 write a query to show the percentage of customers who are divorced and have balances greater than 2000.
 ```sql
+-- CTE
 WITH divorced_customers AS (
 				SELECT COUNT(marital) AS No_of_divorced
 				FROM marketingdata
@@ -171,12 +172,14 @@ WITH divorced_customers AS (
 SELECT ROUND(No_of_divorced/(SELECT COUNT(*) FROM marketingdata)*100,2) AS '%_of_divorced_customers'
 FROM divorced_customers;
 ```
+ OR
  
-SELECT * FROM marketingdata;
-
+```sql
+-- Subquery
 SELECT FORMAT(COUNT(marital)/(SELECT COUNT(*) FROM marketingdata)*100,2) AS '%_of_divorced_customers'
 FROM marketingdata
 WHERE marital = 'divorced' AND balance > 2000;
+```
  
  -- DAY 16
  /* Micro Bank wants to be sure they have enough data for this campaign and would like to see the total count of each job as 
