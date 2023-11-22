@@ -138,9 +138,9 @@ of each segment. The table should include the segments, total sales, total profi
 To ensure accuracy, the profit margin should be arranged in descending order.
 ```sql
 SELECT 	Segment,
-		ROUND(SUM(sales),0) AS Total_sales,
-		ROUND(SUM(profit),0) AS Profit,
-		CONCAT(ROUND(SUM(profit)*100/SUM(sales),2), '%') AS Profit_margin
+	ROUND(SUM(sales),0) AS Total_sales,
+	ROUND(SUM(profit),0) AS Profit,
+	CONCAT(ROUND(SUM(profit)*100/SUM(sales),2), '%') AS Profit_margin
 FROM superstore
 GROUP BY Segment
 ORDER BY Profit_Margin DESC;
@@ -181,57 +181,68 @@ FROM marketingdata
 WHERE marital = 'divorced' AND balance > 2000;
 ```
  
- -- DAY 16
- /* Micro Bank wants to be sure they have enough data for this campaign and would like to see the total count of each job as 
- contained in the dataset. Using the marketing data, write a query to show the count of each job, arrange the total count in Desc order.*/
+**DAY 16**
+
+Micro Bank wants to be sure they have enough data for this campaign and would like to see the total count of each job as 
+contained in the dataset. Using the marketing data, write a query to show the count of each job, arrange the total count in Desc order.
+```sql
 SELECT 	job,
-		COUNT(job) AS job_count
+	COUNT(job) AS job_count
 FROM marketingdata
 GROUP BY job
 ORDER BY job_count DESC; 
+```
 
+**DAY 17**
 
--- DAY 17
-/* Just for clarity purposes, your company wants to see which education level got to the management job the most.
+Just for clarity purposes, your company wants to see which education level got to the management job the most.
 Using the marketing data, write a  query to show the education level that gets the management position the most. 
-Let your output show the education, job and the counts of jobs columns.*/
-
+Let your output show the education, job and the counts of jobs columns.
+```sql
 SELECT education,
-		job,
+	job,
         COUNT(job) AS Job_count
 FROM marketingdata
 WHERE job ='management'
 GROUP BY education, job
 ORDER BY job_count DESC
 LIMIT 1;
+```
 
--- DAY 18
-/* Write a query to show the average duration of customers' employment in management positions. 
-The duration should be calculated in years. */
+**DAY 18**
+
+Write a query to show the average duration of customers' employment in management positions. 
+The duration should be calculated in years.
+```sql
 SELECT ROUND(AVG(duration/52),2) AS Avg_Duration
 FROM marketingdata
 WHERE job ='management';
+```
 
--- DAY 19
-/* What's the total number of customers that have housing, loan and are single? */
+**DAY 19**
+
+What's the total number of customers that have housing, loan and are single?
+```sql
 SELECT 	housing,
-		Loan,
+	Loan,
         marital,
         COUNT(*) AS number_of_customers
 FROM marketingdata
 WHERE housing = 'yes'
 AND loan = 'yes'
 AND marital = 'single';
+```
 
--- Bonus Question
+**Bonus Question**
+```sql
 SELECT title, runtime 
 FROM movie_data
 WHERE runtime >= 250
 ORDER BY runtime DESC;
+```
 
-SELECT * FROM employee_table;
+**DAY 22**
 
--- DAY 22
 /* Using the Employee Table dataset, write a query to show all the employees' first name and last name 
 and their respective salaries. Also, show the overall average salary of the company and calculate the 
 difference between each employee's salary and the company's average salary.*/
