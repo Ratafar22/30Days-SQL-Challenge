@@ -234,6 +234,8 @@ AND marital = 'single';
 ```
 
 **Bonus Question**
+
+Using the Movie data, write a query to show the movie title with runtime of at least 250. Show the title and runtime columns in your output.
 ```sql
 SELECT title, runtime 
 FROM movie_data
@@ -267,7 +269,7 @@ SELECT 	E.first_name,
 FROM employee_table AS E
 CROSS JOIN company_average AS A;
 ```
-```
+```sql
 -- Subquery
 SELECT 	first_name,
 	last_name,
