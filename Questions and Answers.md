@@ -243,79 +243,72 @@ ORDER BY runtime DESC;
 
 **DAY 22**
 
-/* Using the Employee Table dataset, write a query to show all the employees' first name and last name 
+Using the Employee Table dataset, write a query to show all the employees' first name and last name 
 and their respective salaries. Also, show the overall average salary of the company and calculate the 
-difference between each employee's salary and the company's average salary.*/
+difference between each employee's salary and the company's average salary.
+```sql
+-- Using Window function
 SELECT 	first_name,
-		last_name,
+	last_name,
         salary,
-		ROUND(AVG(salary) OVER(), 0) AS Company_Average,
+	ROUND(AVG(salary) OVER(), 0) AS Company_Average,
         salary - (ROUND(AVG(salary) OVER(), 0)) AS Salary_difference
 FROM employee_table;
-
+```
+```sql
 -- CTE
 WITH company_average AS
-			(SELECT AVG(salary) AS company_average
-			FROM employee_table)
+			(SELECT AVG(salary) AS company_average FROM employee_table)
 SELECT 	E.first_name,
-		E.last_name,
+	E.last_name,
         E.salary,
         A.company_average,
         E.salary - A.company_average
 FROM employee_table AS E
 CROSS JOIN company_average AS A;
-
+```
+```
 -- Subquery
 SELECT 	first_name,
-		last_name,
+	last_name,
         salary,
         (SELECT AVG(salary) FROM employee_table)  AS company_average,
         salary -(SELECT AVG(salary) AS company_average FROM employee_table) AS salary_diff
 FROM employee_table;
+```
 
+**DAY 23**
 
--- DAY 23
-/* Using the Share Price dataset, write a query to show a table that displays 
-the highest daily decrease and the highest daily increase in share price. */
-
+Using the Share Price dataset, write a query to show a table that displays the highest daily decrease and the highest daily increase in share price.
+```sql
 SELECT
      ROUND(MIN(close - open),2) AS highest_daily_decrease,
      ROUND(MAX(close - open),2) AS highest_daily_increase
 FROM SharePrice;
+```
 
-SELECT * FROM shareprice;
+**DAY 24**
 
--- DAY 24
-/* Our client is planning their logistics for 2024, they want to know the average number of days it takes to 
+Our client is planning their logistics for 2024, they want to know the average number of days it takes to 
 ship to the top 10 states. Using the sample superstore dataset, write a query to show the state and the average 
-number of days between the order date and the ship date to the top 10 states */
-
+number of days between the order date and the ship date to the top 10 states.
+```sql
 SELECT 	state, 
-		FLOOR(AVG(DATEDIFF(shipdate, orderdate))) AS Average_delivery_days
+	FLOOR(AVG(DATEDIFF(shipdate, orderdate))) AS Average_delivery_days
 FROM superstore
 GROUP BY 1
 ORDER BY 2
 LIMIT 10;
+```
 
-SELECT *
-FROM superstore;
+**DAY 25**
 
-SELECT 	state, 
-		FORMAT(AVG(DATEDIFF(shipdate, orderdate)),1) AS Average_delivery_days
-FROM superstore
-GROUP BY 1
-ORDER BY 2
-LIMIT 10;
-		
-SELECT * FROM returns;
-
--- DAY 25
-/* Your company received a lot of bad reviews about some of your products lately and the management wants 
+Your company received a lot of bad reviews about some of your products lately and the management wants 
 to see which products they are and how many have been returned so far. Using the orders and returns table, 
-write a query to see the top 5 most returned products from the company.*/
-
+write a query to see the top 5 most returned products from the company.
+```sql
 SELECT 	S.ProductName AS Product_Name, 
-		S.ProductID AS ProductID, 
+	S.ProductID AS ProductID, 
         COUNT(S.ProductName) AS Product_Count
 FROM superstore AS S
 INNER JOIN returns AS R
@@ -323,10 +316,13 @@ ON R.OrderID = S.OrderID
 GROUP BY Product_Name, ProductID
 ORDER BY Product_Count DESC, ProductID
 LIMIT 5;
+```
 		
--- DAY 26
-/* Using the employee table dataset, write a query to show the ratio of the analyst job title to the entire job titles.*/
+**DAY 26**
 
+Using the employee table dataset, write a query to show the ratio of the analyst job title to the entire job titles.
+```sql
+-- Using CTE
 WITH TotalJobCount AS(
 		SELECT COUNT(job_title) AS AllJobCount
 		FROM employee_table),
@@ -338,63 +334,54 @@ SELECT 	AnalystCount,
 		FORMAT((AnalystCount/AllJobCOUNT)*100,0) AS AnalystToTotalRatio
 FROM TotalJobCount
 CROSS JOIN AnalystJobCount;
-
-
-WITH TotalJobCount AS(
-		SELECT COUNT(job_title) AS AllJobCount
-		FROM employee_table),
-AnalystJobCount AS (
-		SELECT COUNT(job_title) AS AnalystCount
-		FROM employee_table
-		WHERE job_title = 'Analyst')
-SELECT 	AnalystCount,
-		FORMAT((AnalystCount/AllJobCOUNT)*100,0) AS AnalystTotalRatio
-FROM TotalJobCount, AnalystJobCount;
-
+```
+OR
+```sql
 -- Using Subquery
-SELECT * FROM employee_table;
 SELECT 	COUNT(job_title) AS AnalystCount,
-		FORMAT(COUNT(job_title)/(SELECT COUNT(job_title) FROM employee_table) *100,0) AS AnalystTotalRatio
+	FORMAT(COUNT(job_title)/(SELECT COUNT(job_title) FROM employee_table) *100,0) AS AnalystTotalRatio
 FROM employee_table
 WHERE job_title = 'Analyst';
+```
 
--- BONUS 4
-/* write a query to find 3rd highest sales from the sample superstore data*/
+**BONUS Question**
 
+write a query to find 3rd highest sales from the sample superstore data
+```sql
 -- Using the Limit and offest method
 SELECT (sales)
 FROM superstore
 ORDER BY sales DESC
 LIMIT 1 OFFSET 2;
-
+```
+```sql
 -- Using the Window function and Subquery
 SELECT sales 
 FROM  	(SELECT (sales), ROW_NUMBER() OVER(ORDER BY sales DESC) AS Row_numb
-		FROM superstore) sub
+	 FROM superstore) sub
 WHERE Row_numb = 3;
+```
 
--- DAY 29
-/* Using the Employee dataset, please write a query to show the job title and department with the highest salary*/
+**DAY 29**
 
+Using the Employee dataset, please write a query to show the job title and department with the highest salary.
+```sql
 SELECT 	job_title,
-		department
+	department
 FROM employee_table
 WHERE salary = (SELECT MAX(salary) FROM employee_table)
 GROUP BY 1,2;
+```
 
+**DAY 30**
 
-
--- DAY 30
-/* Using the Employee dataset, write a query to determine the rank of employees based on their salaries in each department.
-For each department, find the employee(s) with the highest salary and rank them in descending order. */
-
+Using the Employee dataset, write a query to determine the rank of employees based on their salaries in each department.
+For each department, find the employee(s) with the highest salary and rank them in descending order.
+```sql
 SELECT 	first_name,
-		last_name,
+	last_name,
         department,
-		salary,
+	salary,
         DENSE_RANK() OVER(PARTITION BY DEPARTMENT ORDER BY SALARY DESC) AS department_salary_rank
 FROM employee_table;
-
-
-
-SELECT * FROM employee_table;
+```
