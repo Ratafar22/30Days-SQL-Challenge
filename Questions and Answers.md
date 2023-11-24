@@ -1,6 +1,6 @@
 Below are the questions that were asked during the 30 days challenges and the queries I wrote to answer them.
 
-**DAY 1**
+# **DAY 1**
 
 Using the Movie Data, write a query to show the titles and movies released in 2017 whose vote count is more than 15 and runtime is more than 100
 ```sql
@@ -8,6 +8,14 @@ SELECT original_title
 FROM movie_data
 WHERE YEAR(release_date) = 2017 AND vote_count > 15 AND runtime > 100; 
 ```
+**Output:**
+|original_title|
+|:---|
+Girls Trip
+Detroit
+L'Amant double
+Descendants 2
+#
 
 **DAY 2**
 
