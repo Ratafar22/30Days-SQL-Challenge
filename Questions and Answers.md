@@ -26,7 +26,7 @@ FROM customer_orders;
 ```
 ### **Output:**
 |total_pizzas_ordered|
-|---|
+|:---|
 14
 
 #
@@ -47,8 +47,15 @@ FROM runner_orders
 WHERE cancellation = ''
 GROUP BY runner_id;
 ```
+### **Output:**
+|runner_id 	|successful_orders
+|:----		|---
+|1		|4
+2		|3
+3		|1
 
- **DAY 4**
+#
+### **DAY 4**
  
 Using the Movie Data, Write a query to show the top 10 movie titles whose language is English 
 and French and the budget is more than 1,000,000
@@ -58,18 +65,39 @@ FROM movie_data
 WHERE original_language IN ('en', 'fr') AND budget >1000000
 LIMIT 10;
 ```
+### **Output:**
+|original_title|
+|:---		|
+Toy Story
+Jumanji
+Waiting to Exhale
+Heat
+Sabrina
+Sudden Death
+GoldenEye
+The American President
+Nixon
+Cutthroat Island
+#
 
 **DAY 5**
 
 Using the Pizza Data, Write a query to show the number of each type of pizza that was delivered
 ```sql
-USE pizzas;
-SELECT p.pizza_name, COUNT(c.pizza_id)
+SELECT p.pizza_name, COUNT(c.pizza_id) AS no_of_pizza
 FROM customer_orders c
 INNER JOIN  pizza_names p ON p.pizza_id = c.pizza_id
 WHERE c.order_id NOT IN (SELECT order_id FROM runner_orders WHERE cancellation != '')
 GROUP BY 1;
 ```
+### **Output:**
+
+|pizza_name	|no_of_pizza|
+|:---		|---
+Meat Lovers	|9
+Vegetarian	|3
+
+#
 
 **BONUS Question**
 
@@ -84,6 +112,15 @@ FROM superstore
 WHERE city in ('Dallas', 'Los Angeles', 'Seattle', 'Madison')
 GROUP BY city;
 ```
+### **Output:**
+|city	|Average_delivery_days
+|:---	|---
+|Los Angeles	|4.0
+Seattle		|4.0
+Madison		|3.6
+Dallas		|4.1
+
+#
 
 **DAY 8**
 
