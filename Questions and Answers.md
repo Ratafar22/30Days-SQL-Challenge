@@ -303,7 +303,7 @@ WHERE marital = 'divorced' AND balance > 2000;
 
 #
  
-**DAY 16**
+### **DAY 16**
 
 Micro Bank wants to be sure they have enough data for this campaign and would like to see the total count of each job as 
 contained in the dataset. Using the marketing data, write a query to show the count of each job, arrange the total count in Desc order.
@@ -315,16 +315,24 @@ GROUP BY job
 ORDER BY job_count DESC; 
 ```
 ### **Output:**
-|city	|Average_delivery_days
-|:---	|---
-|Los Angeles	|4.0
-Seattle		|4.0
-Madison		|3.6
-Dallas		|4.1
+|job	|job_count
+|:--	|---
+management	|2566
+blue-collar	|1944
+technician	|1823
+admin.		|1334
+services	|923
+retired		|778
+self-employed	|405
+student		|360
+unemployed	|357
+entrepreneur	|328
+housemaid	|274
+unknown		|70
 
 #
 
-**DAY 17**
+### **DAY 17**
 
 Just for clarity purposes, your company wants to see which education level got to the management job the most.
 Using the marketing data, write a  query to show the education level that gets the management position the most. 
@@ -340,16 +348,13 @@ ORDER BY job_count DESC
 LIMIT 1;
 ```
 ### **Output:**
-|city	|Average_delivery_days
-|:---	|---
-|Los Angeles	|4.0
-Seattle		|4.0
-Madison		|3.6
-Dallas		|4.1
+|education	|job	|Job_count
+|:---		|---	|---
+tertiary	|management	|2178
 
 #
 
-**DAY 18**
+### **DAY 18**
 
 Write a query to show the average duration of customers' employment in management positions. 
 The duration should be calculated in years.
@@ -359,16 +364,13 @@ FROM marketingdata
 WHERE job ='management';
 ```
 ### **Output:**
-|city	|Average_delivery_days
-|:---	|---
-|Los Angeles	|4.0
-Seattle		|4.0
-Madison		|3.6
-Dallas		|4.1
+|Avg_Duration
+|:--
+6.95
 
 #
 
-**DAY 19**
+### **DAY 19**
 
 What's the total number of customers that have housing, loan and are single?
 ```sql
@@ -382,16 +384,13 @@ AND loan = 'yes'
 AND marital = 'single';
 ```
 ### **Output:**
-|city	|Average_delivery_days
-|:---	|---
-|Los Angeles	|4.0
-Seattle		|4.0
-Madison		|3.6
-Dallas		|4.1
+|housing	|Loan	|marital	|number_of_customers
+|:---		|---	|---		|---
+yes		|yes	|single		|158
 
 #
 
-**Bonus Question**
+### **Bonus Question**
 
 Using the Movie data, write a query to show the movie title with runtime of at least 250. Show the title and runtime columns in your output.
 ```sql
@@ -401,12 +400,10 @@ WHERE runtime >= 250
 ORDER BY runtime DESC;
 ```
 ### **Output:**
-|city	|Average_delivery_days
-|:---	|---
-|Los Angeles	|4.0
-Seattle		|4.0
-Madison		|3.6
-Dallas		|4.1
+|title			|runtime
+|:---			|--
+Century of Birthing	|360
+The Prisoner of If Castle	|270
 
 #
 
@@ -446,12 +443,28 @@ SELECT 	first_name,
 FROM employee_table;
 ```
 ### **Output:**
-|city	|Average_delivery_days
-|:---	|---
-|Los Angeles	|4.0
-Seattle		|4.0
-Madison		|3.6
-Dallas		|4.1
+|first_name	|last_name	|salary	|Company_Average	|Salary_difference
+|:---		|---		|---	|---			|---
+John	|Doe	|75000	|66150	|8850
+Jane	|Smith	|65000	|66150	|-1150
+Mike	|Johnson |60000	|66150	|-6150
+Sarah	|Brown	|55000	|66150	|-11150
+David	|Lee	|70000	|66150	|3850
+Emily	|Wilson	|72000	|66150	|5850
+Michael	|Garcia	|68000	|66150	|1850
+Olivia	|Martinez |61000 |66150	|-5150
+James	|Williams |59000 |66150	|-7150
+Sophia	|Taylor	|72000	|66150	|5850
+Daniel	|Miller	|75000	|66150	|8850
+Ava	|Anderson |66000 |66150	|-150
+William	|Moore	|62000	|66150	|-4150
+Ella	|White	|58000	|66150	|-8150
+Alexander |Lopez |71000	|66150	|4850
+Mia	|Harris	|73000	|66150	|6850
+Henry	|Clark	|67000	|66150	|850
+Grace	|Lewis	|63000	|66150	|-3150
+Liam	|Young	|57000	|66150	|-9150
+Chloe	|Gonzalez |74000 |66150	|7850
 
 #
 
