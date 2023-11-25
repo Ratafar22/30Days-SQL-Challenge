@@ -217,12 +217,12 @@ GROUP BY 1
 ORDER BY 2 DESC;
 ```
 ### **Output:**
-|city	|Average_delivery_days
-|:---	|---
-|Los Angeles	|4.0
-Seattle		|4.0
-Madison		|3.6
-Dallas		|4.1
+|Year	|Total_Phone_Sales
+|:---	|----
+2020	|105341
+2019	|78962
+2017	|77391
+2018	|68314
 
 #
 
@@ -242,12 +242,11 @@ GROUP BY Segment
 ORDER BY Profit_Margin DESC;
 ```
 ### **Output:**
-|city	|Average_delivery_days
-|:---	|---
-|Los Angeles	|4.0
-Seattle		|4.0
-Madison		|3.6
-Dallas		|4.1
+|Segment	|Total_sales	|Profit	|Profit_margin
+|:---		|---		|---	|---
+Home Office	|429653	|60299		|14.03%
+Corporate	|706146	|91979		|13.03%
+Consumer	|1161401	|134119		|11.55%
 
 #
 
@@ -261,12 +260,15 @@ FROM bonus_table
 WHERE translation = '';
 ```
 ### **Output:**
-|city	|Average_delivery_days
-|:---	|---
-|Los Angeles	|4.0
-Seattle		|4.0
-Madison		|3.6
-Dallas		|4.1
+|Review
+|----
+Good
+Good
+Excellent 
+Bad
+Fair
+Excellent 
+Good
 
 #
 
@@ -295,12 +297,9 @@ FROM marketingdata
 WHERE marital = 'divorced' AND balance > 2000;
 ```
 ### **Output:**
-|city	|Average_delivery_days
-|:---	|---
-|Los Angeles	|4.0
-Seattle		|4.0
-Madison		|3.6
-Dallas		|4.1
+|%_of_divorced_customers
+|---
+2.45
 
 #
  
@@ -340,6 +339,15 @@ GROUP BY education, job
 ORDER BY job_count DESC
 LIMIT 1;
 ```
+### **Output:**
+|city	|Average_delivery_days
+|:---	|---
+|Los Angeles	|4.0
+Seattle		|4.0
+Madison		|3.6
+Dallas		|4.1
+
+#
 
 **DAY 18**
 
@@ -350,6 +358,15 @@ SELECT ROUND(AVG(duration/52),2) AS Avg_Duration
 FROM marketingdata
 WHERE job ='management';
 ```
+### **Output:**
+|city	|Average_delivery_days
+|:---	|---
+|Los Angeles	|4.0
+Seattle		|4.0
+Madison		|3.6
+Dallas		|4.1
+
+#
 
 **DAY 19**
 
@@ -364,6 +381,15 @@ WHERE housing = 'yes'
 AND loan = 'yes'
 AND marital = 'single';
 ```
+### **Output:**
+|city	|Average_delivery_days
+|:---	|---
+|Los Angeles	|4.0
+Seattle		|4.0
+Madison		|3.6
+Dallas		|4.1
+
+#
 
 **Bonus Question**
 
@@ -374,6 +400,15 @@ FROM movie_data
 WHERE runtime >= 250
 ORDER BY runtime DESC;
 ```
+### **Output:**
+|city	|Average_delivery_days
+|:---	|---
+|Los Angeles	|4.0
+Seattle		|4.0
+Madison		|3.6
+Dallas		|4.1
+
+#
 
 **DAY 22**
 
@@ -410,6 +445,15 @@ SELECT 	first_name,
         salary -(SELECT AVG(salary) AS company_average FROM employee_table) AS salary_diff
 FROM employee_table;
 ```
+### **Output:**
+|city	|Average_delivery_days
+|:---	|---
+|Los Angeles	|4.0
+Seattle		|4.0
+Madison		|3.6
+Dallas		|4.1
+
+#
 
 **DAY 23**
 
@@ -420,6 +464,15 @@ SELECT
      ROUND(MAX(close - open),2) AS highest_daily_increase
 FROM SharePrice;
 ```
+### **Output:**
+|city	|Average_delivery_days
+|:---	|---
+|Los Angeles	|4.0
+Seattle		|4.0
+Madison		|3.6
+Dallas		|4.1
+
+#
 
 **DAY 24**
 
@@ -434,6 +487,15 @@ GROUP BY 1
 ORDER BY 2
 LIMIT 10;
 ```
+### **Output:**
+|city	|Average_delivery_days
+|:---	|---
+|Los Angeles	|4.0
+Seattle		|4.0
+Madison		|3.6
+Dallas		|4.1
+
+#
 
 **DAY 25**
 
