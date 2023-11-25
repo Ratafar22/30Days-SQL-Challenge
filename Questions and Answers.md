@@ -80,7 +80,7 @@ Nixon
 Cutthroat Island
 #
 
-**DAY 5**
+### **DAY 5**
 
 Using the Pizza Data, Write a query to show the number of each type of pizza that was delivered
 ```sql
@@ -99,7 +99,7 @@ Vegetarian	|3
 
 #
 
-**BONUS Question**
+### **BONUS Question**
 
 The Briggs company wants to ship some of their products to customers in selected cities but they want to know
 the average days it will take to deliver those items to Dallas, Los Angeles, Seattle, and Madison. 
@@ -122,7 +122,7 @@ Dallas		|4.1
 
 #
 
-**DAY 8**
+### **DAY 8**
 
 It's getting to the end of the year and The Briggs Company wants to reward the customer who made the highest sales ever. 
 Using the Sample Superstore, write a query to help the company identify this customer and the category of business driving the sales.
@@ -140,8 +140,14 @@ GROUP BY 1, 2
 ORDER BY 3 DESC
 LIMIT 1;
 ```
+### **Output:**
+|CustomerName	|Category	|total_sales
+|:---		|---		|---
+Sean Miller	|Technology	|23482
 
-**DAY 9**
+#
+
+### **DAY 9**
 
 The Briggs Company has 3 categories of business generating revenue for the company. 
 They want to know which of them is driving the business. Write a query to show the total sales and percentage
@@ -154,8 +160,16 @@ FROM superstore
 GROUP BY 1
 ORDER BY 3 DESC;
 ```
+### **Output:**
+|Category	|Total_Sales	|Percentage_Contribution
+|:---		|----		|----
+Technology	|836154	|36.4%
+Furniture	|742000	|32.3%
+Office Supplies	|719047	|31.3%
 
-**DAY 10**
+#
+
+### **DAY 10**
 
 After seeing the Sales by Category, the Briggs company became curious and wanted to dig deeper to see 
 which subcategory is selling the most. They need the help of an analyst. Please help the company write a
@@ -168,8 +182,30 @@ FROM superstore
 GROUP BY 1
 ORDER BY 2 DESC;
 ```
+### **Output:**
+|SubCategory	|Total_Sales
+|:---		|---
+Phones	|330007
+Chairs	|328449
+Storage	|223844
+Tables	|206966
+Binders	|203413
+Machines	|189239
+Accessories	|167380
+Copiers		|149528
+Bookcases	|114880
+Appliances	|107532
+Furnishings	|91705
+Paper		|78479
+Supplies	|46674
+Art		|27119
+Envelopes	|16476
+Labels	|12486
+Fasteners	|3024
 
-**DAY 11**
+#
+
+### **DAY 11**
 
 Now that you've identified phones as the business driver in terms of revenue. The company wants to know the total phone sales by year to understand how each year performed. As the Analyst, please help them show the breakdown of total sales by year in descending order. Let your output show only the Total sales and Sales Year column.
 ```sql
@@ -180,8 +216,17 @@ WHERE SubCategory = 'Phones'
 GROUP BY 1
 ORDER BY 2 DESC;
 ```
+### **Output:**
+|city	|Average_delivery_days
+|:---	|---
+|Los Angeles	|4.0
+Seattle		|4.0
+Madison		|3.6
+Dallas		|4.1
 
-**DAY 12**
+#
+
+### **DAY 12**
 
 The Director of Analytics has requested a detailed analysis of the Briggs Company. 
 To fulfill this request, he needs you to generate a table that displays the profit margin 
@@ -196,8 +241,17 @@ FROM superstore
 GROUP BY Segment
 ORDER BY Profit_Margin DESC;
 ```
+### **Output:**
+|city	|Average_delivery_days
+|:---	|---
+|Los Angeles	|4.0
+Seattle		|4.0
+Madison		|3.6
+Dallas		|4.1
 
-**Bonus Question**
+#
+
+### **Bonus Question**
 
 Please use the Bonus table to write a query that returns only the meaningful reviews. 
 Let your output return only the review column.
@@ -206,8 +260,17 @@ SELECT (Review)
 FROM bonus_table
 WHERE translation = '';
 ```
+### **Output:**
+|city	|Average_delivery_days
+|:---	|---
+|Los Angeles	|4.0
+Seattle		|4.0
+Madison		|3.6
+Dallas		|4.1
 
-**DAY 15**
+#
+
+### **DAY 15**
 
 Your company started consulting for Micro bank who needs to analyze their marketing data to understand their customers better.
 This will help them to plan their next marketing campaign. you are brought on board as the analyst for this job.
@@ -231,6 +294,15 @@ SELECT FORMAT(COUNT(marital)/(SELECT COUNT(*) FROM marketingdata)*100,2) AS '%_o
 FROM marketingdata
 WHERE marital = 'divorced' AND balance > 2000;
 ```
+### **Output:**
+|city	|Average_delivery_days
+|:---	|---
+|Los Angeles	|4.0
+Seattle		|4.0
+Madison		|3.6
+Dallas		|4.1
+
+#
  
 **DAY 16**
 
@@ -243,6 +315,15 @@ FROM marketingdata
 GROUP BY job
 ORDER BY job_count DESC; 
 ```
+### **Output:**
+|city	|Average_delivery_days
+|:---	|---
+|Los Angeles	|4.0
+Seattle		|4.0
+Madison		|3.6
+Dallas		|4.1
+
+#
 
 **DAY 17**
 
