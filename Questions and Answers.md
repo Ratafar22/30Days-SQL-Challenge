@@ -407,7 +407,7 @@ The Prisoner of If Castle	|270
 
 #
 
-**DAY 22**
+### **DAY 22**
 
 Using the Employee Table dataset, write a query to show all the employees' first name and last name 
 and their respective salaries. Also, show the overall average salary of the company and calculate the 
@@ -468,7 +468,7 @@ Chloe	|Gonzalez |74000 |66150	|7850
 
 #
 
-**DAY 23**
+### **DAY 23**
 
 Using the Share Price dataset, write a query to show a table that displays the highest daily decrease and the highest daily increase in share price.
 ```sql
@@ -478,39 +478,43 @@ SELECT
 FROM SharePrice;
 ```
 ### **Output:**
-|city	|Average_delivery_days
-|:---	|---
-|Los Angeles	|4.0
-Seattle		|4.0
-Madison		|3.6
-Dallas		|4.1
+|highest_daily_decrease	|highest_daily_increase
+|:---			|---
+-35.26			|31.06
 
 #
 
-**DAY 24**
+### **DAY 24**
 
 Our client is planning their logistics for 2024, they want to know the average number of days it takes to 
 ship to the top 10 states. Using the sample superstore dataset, write a query to show the state and the average 
 number of days between the order date and the ship date to the top 10 states.
 ```sql
 SELECT 	state, 
-	FLOOR(AVG(DATEDIFF(shipdate, orderdate))) AS Average_delivery_days
+	FORMAT(AVG(DATEDIFF(shipdate, orderdate)),1) AS Average_delivery_days
 FROM superstore
 GROUP BY 1
 ORDER BY 2
 LIMIT 10;
+SELECT 	state, 
 ```
 ### **Output:**
-|city	|Average_delivery_days
-|:---	|---
-|Los Angeles	|4.0
-Seattle		|4.0
-Madison		|3.6
-Dallas		|4.1
+|state		|Average_delivery_days
+|:--- 		|---
+North Dakota	|2.9
+Louisiana	|3.0
+West Virginia	|3.0
+Rhode Island	|3.3
+Ohio		|3.5
+Nebraska	|3.5
+Connecticut	|3.6
+South Carolina	|3.6
+New Hampshire	|3.7
+Colorado	|3.7
 
 #
 
-**DAY 25**
+### **DAY 25**
 
 Your company received a lot of bad reviews about some of your products lately and the management wants 
 to see which products they are and how many have been returned so far. Using the orders and returns table, 
@@ -526,8 +530,19 @@ GROUP BY Product_Name, ProductID
 ORDER BY Product_Count DESC, ProductID
 LIMIT 5;
 ```
-		
-**DAY 26**
+### **Output:**
+|Product_Name				|ProductID		|Product_Count
+|:----					|----			|----
+Global Leather Task Chair, Black	|FUR-CH-10003061	|20
+Advantus Push Pins			|OFF-FA-10000304	|20
+Global Troy Executive Leather Low-Back Tilter	|FUR-CH-10001215	|19
+Global Wood Trimmed Manager's Task Chair, Khaki	|FUR-CH-10003774	|17
+Ibico Standard Transparent Covers	|OFF-BI-10002852	|17
+
+
+#
+  
+### **DAY 26**
 
 Using the employee table dataset, write a query to show the ratio of the analyst job title to the entire job titles.
 ```sql
@@ -552,8 +567,14 @@ SELECT 	COUNT(job_title) AS AnalystCount,
 FROM employee_table
 WHERE job_title = 'Analyst';
 ```
+### **Output:**
+|AnalystCount	|AnalystToTotalRatio
+|:----		|---
+4		|20
 
-**BONUS Question**
+#
+
+### **BONUS Question**
 
 write a query to find 3rd highest sales from the sample superstore data
 ```sql
@@ -570,8 +591,14 @@ FROM  	(SELECT (sales), ROW_NUMBER() OVER(ORDER BY sales DESC) AS Row_numb
 	 FROM superstore) sub
 WHERE Row_numb = 3;
 ```
+### **Output:**
+|sales
+|:---
+13999.96
 
-**DAY 29**
+#
+
+### **DAY 29**
 
 Using the Employee dataset, please write a query to show the job title and department with the highest salary.
 ```sql
@@ -581,8 +608,14 @@ FROM employee_table
 WHERE salary = (SELECT MAX(salary) FROM employee_table)
 GROUP BY 1,2;
 ```
+### **Output:**
+|job_title	|department
+|:---		|---
+Manager		|HR
 
-**DAY 30**
+#
+
+### **DAY 30**
 
 Using the Employee dataset, write a query to determine the rank of employees based on their salaries in each department.
 For each department, find the employee(s) with the highest salary and rank them in descending order.
@@ -594,3 +627,26 @@ SELECT 	first_name,
         DENSE_RANK() OVER(PARTITION BY DEPARTMENT ORDER BY SALARY DESC) AS department_salary_rank
 FROM employee_table;
 ```
+### **Output:**
+|first_name		|last_name	|department	|salary		|department_salary_rank
+|:---			|----		|----		|---		|----
+Grace			|Lewis		|Creative	|63000		|1
+William			|Moore		|Creative	|62000		|2
+Olivia			|Martinez	|Creative	|61000		|3
+Mike			|Johnson	|Creative	|60000		|4
+Chloe			|Gonzalez	|Engineering	|74000		|1
+Sophia			|Taylor		|Engineering	|72000		|2
+Alexander		|Lopez		|Engineering	|71000		|3
+David			|Lee		|Engineering	|70000		|4
+Michael			|Garcia		|Engineering	|68000		|5
+Henry			|Clark		|Engineering	|67000		|6
+Ava			|Anderson	|Engineering	|66000		|7
+Jane			|Smith		|Engineering	|65000		|8
+James			|Williams	|Finance	|59000		|1
+Ella			|White		|Finance	|58000		|2
+Liam			|Young		|Finance	|57000		|3
+Sarah			|Brown		|Finance	|55000		|4
+John			|Doe		|HR		|75000		|1
+Daniel			|Miller		|HR		|75000		|1
+Mia			|Harris		|HR		|73000		|2
+Emily			|Wilson		|HR		|72000		|3
