@@ -1,4 +1,4 @@
-# 30Days-SQL-Challenge
+#  📊 30Days-SQL-Challenge 💻
 
 ## Overview
 I participated in a 30-day SQL challenge organised by Techavilly. Throughout this challenge, we worked on four datasets. I was tasked with using my SQL skills to solve business questions as required by the company.
