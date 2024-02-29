@@ -1,5 +1,7 @@
 #  📊 30Days-SQL-Challenge 💻
 
+![](https://github.com/Ratafar22/30Days-SQL-Challenge/blob/main/Certificate.png)
+
 ## Overview
 I participated in a 30-day SQL challenge organised by Techavilly. Throughout this challenge, we worked on eleven datasets which were imported into two databases for easy analysis. 
 
